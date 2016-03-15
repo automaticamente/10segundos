@@ -49,9 +49,9 @@ const bot = () => {
         })
         .then(stream => generator.duration(stream))
         .then(result => generator.cut(result.stream, _.random(0, result.duration - 11), videoData.get('date').year(), config.font, path.join(__dirname, 'current.mp4')))
-        .then(output => T.tweetVideo(`${videoData.get('title')} ${videoData.get('link')}`, output))
+        .then(output => T.tweetVideo(`${_.truncate(videoData.get('title'), {length:117, separator: ' '})} ${videoData.get('link')}`, output))
         .then(id => process.stdout.write(id))
-        .catch(error => console.error(error));
+        .catch(error => bot());
 };
 
 bot();
