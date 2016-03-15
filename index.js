@@ -51,7 +51,7 @@ const bot = () => {
         .then(result => generator.cut(result.stream, _.random(0, result.duration - 11), videoData.get('date').year(), config.font, path.join(__dirname, 'current.mp4')))
         .then(output => T.tweetVideo(`${_.truncate(videoData.get('title'), {length:117, separator: ' '})} ${videoData.get('link')}`, output))
         .then(id => process.stdout.write(id))
-        .catch(error => setTimeout(() => bot(), 60000);
+        .catch(error => setTimeout(() => bot(), 60000));
 };
 
 bot();
