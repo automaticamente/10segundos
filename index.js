@@ -19,6 +19,8 @@ const baseUrl = 'http://pasouoquepasou.crtvg.es';
 const T = new Tweeter(config.twitterAPI);
 
 const bot = () => {
+
+    //TODO: scrape last page
     const url = `${baseUrl}/novidades?page=${_.random(0, 128)}`;
     const videoData = new Map();
 
