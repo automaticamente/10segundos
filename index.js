@@ -21,7 +21,7 @@ const T = new Tweeter(config.twitterAPI);
 const bot = () => {
 
     //TODO: scrape last page
-    const url = `${baseUrl}/novidades?page=${_.random(0, 128)}`;
+    const url = `${baseUrl}/novidades?page=${_.random(0, 134)}`;
     const videoData = new Map();
 
     feeder(url)
@@ -53,7 +53,9 @@ const bot = () => {
         .then(result => generator.cut(result.stream, _.random(0, result.duration - 11), videoData.get('date').year(), config.font, path.join(__dirname, 'current.mp4')))
         .then(output => T.tweetVideo(`${_.truncate(videoData.get('title'), {length:117, separator: ' '})} ${videoData.get('link')}`, output))
         .then(id => process.stdout.write(id))
-        .catch(error => setTimeout(() => bot(), 60000));
+        .catch(error => {
+		console.log(error);
+	});
 };
 
 bot();
